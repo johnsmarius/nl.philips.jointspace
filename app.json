@@ -1,0 +1,189 @@
+{
+	"id": "nl.philips.jointspace",
+	"version": "0.1.0",
+	"compatibility": "0.x || 1.x",
+	"name": {
+		"en": "Philips TV",
+		"nl": "Philips TV"
+	},
+	"description": {
+		"en": "Let Homey control your Philips TV with flow actions",
+		"nl": "Laat Homey jou Philips TV bedienen met flow acties"
+	},
+	"author": {
+		"name": "John Smarius",
+		"e-mail": "john.smarius@gmail.com"
+	},
+	"category": "video",
+	"dependencies": {
+		"net": "*",
+		"request": "*",
+      	"express":"^4.13.3",
+     	"ws":"^1.0.1"		
+	},
+	"permissions": [],
+	"images": {
+		"large": "./assets/images/large.jpg",
+		"small": "./assets/images/small.jpg"
+	},
+	"drivers": [
+		{
+			"id": "jointspace",
+			"name": {
+				"en": "Philips TV"
+			},
+			"images": {
+				"large": "./drivers/jointspace/assets/images/large.png",
+				"small": "./drivers/jointspace/assets/images/small.png"
+			},
+			"class": "tv",
+			"capabilities": [ "onoff", "channel", "volume", "source", "mute" ],
+			"pair": [{
+             	 "id": "start"
+           		},
+				{
+					"id": "list_devices",
+					"template": "list_devices",
+					"navigation": {
+						"next": "add_tv"
+					}
+				},
+				{
+					"id": "add_tv",
+					"template": "add_devices"
+				}
+			]		
+		}
+	],
+	"flow": {
+		"actions": [
+			{
+				"id": "set_channel",
+				"title": {
+					"en": "Set TV to channel",
+					"nl": "Zet TV op kanaal"
+				},
+				"args": [
+					{
+						"name": "tv",
+						"type": "device",
+						"placeholder": {
+							"en": "Select Philips TV...",
+							"nl": "Selecteer Philips TV..."
+						}
+					},
+					{
+						"name": "channel",
+						"type": "autocomplete",
+						"placeholder": {
+							"en": "Select TV Channel",
+							"nl": "Selecteer TV kanaal"
+						}
+					}
+				]
+			},
+			{
+				"id": "set_volume",
+				"title": {
+					"en": "Set TV Volume",
+					"nl": "Zet TV Volume"
+				},
+				"args": [
+					{
+						"name": "tv",
+						"type": "device",
+						"placeholder": {
+							"en": "Select Philips TV...",
+							"nl": "Selecteer Philips TV..."
+						}
+					},
+					{
+						"name": "volume",
+						"type": "range",
+						"min": 0,
+						"max": 60,
+						"step": 1,
+						"placeholder": {
+							"en": "Set TV volume",
+							"nl": "Zet TV volume"
+						}
+					}
+				]
+			},
+			{
+				"id": "set_source",
+				"title": {
+					"en": "Set TV input source",
+					"nl": "Zet TV input bron"
+				},
+				"args": [
+					{
+						"name": "tv",
+						"type": "device",
+						"placeholder": {
+							"en": "Select Philips TV...",
+							"nl": "Selecteer Philips TV..."
+						}
+					},
+					{
+						"name": "source",
+						"type": "autocomplete",
+						"placeholder": {
+							"en": "Select TV source",
+							"nl": "Selecteer TV bron"
+						}
+					}
+				]
+			},
+			{
+				"id": "set_mute_true",
+				"title": {
+					"en": "Mute TV volume"
+				},
+				"args": [
+					{
+						"name": "tv",
+						"type": "device",
+						"placeholder": {
+							"en": "Select Philips TV...",
+							"nl": "Selecteer Philips TV..."
+						}
+					}
+				]
+			},
+			{
+				"id": "set_mute_false",
+				"title": {
+					"en": "Unmute TV volume"
+				},
+				"args": [
+					{
+						"name": "tv",
+						"type": "device",
+						"placeholder": {
+							"en": "Select Philips TV...",
+							"nl": "Selecteer Philips TV..."
+						}
+					}
+				]
+			},
+			{
+				"id": "standby",
+				"title": {
+					"en": "Put TV on standby mode",
+					"nl": "Zet TV op standby"
+				},
+				"args": [
+					{
+						"name": "tv",
+						"type": "device",
+						"placeholder": {
+							"en": "Select Philips TV...",
+							"nl": "Selecteer Philips TV..."
+						}
+					}
+				]
+			}
+		]
+	}
+}
