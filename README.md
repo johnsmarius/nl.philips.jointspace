@@ -20,3 +20,5 @@ Mute the TV
 UnMute the TV
 Put the TV on Standby
 
+Supported Philips TV models:
+There are three versions: 0.23 for 2009/2010 Philips televisions (xxx5 en xxx4 series), 0.24 for 2011-2012 televisions (xxx6-xxx7) and 0.24_2013 for 2013-2014 televisions (xxx8-xxx9 (only non-Android)). New Android sets (2014+) do not come with Jointspace and are not supported
