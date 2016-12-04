@@ -10,15 +10,29 @@ or else you will loose connection with your Philips TV.
 To check if your philips TV support the Jointspace API you can check in the browser with
 http://tv-ip-adress:1925
 
+It responds with a link to the API reference like http://tv-ip-adress:1925/tv-device-nr/doc/API.html
+Both the tv-ip-adress and tv-device-nr are needed to pair your tv.
+
+REMARK: TV on standby doesn't have the Jointspace API available, so after the Standby command TV can't be reached anymore.
+
+For Jointspace API reference look at: http://jointspace.sourceforge.net/projectdata/documentation/jasonApi/1/doc/API.html
+
 This app supports
 
 ### Action cards
 Set a TV channel
 Set the volume
 Set a TV source
+Send a input key 
 Mute the TV
 UnMute the TV
 Put the TV on Standby
 
-Supported Philips TV models:
-There are three versions: 0.23 for 2009/2010 Philips televisions (xxx5 en xxx4 series), 0.24 for 2011-2012 televisions (xxx6-xxx7) and 0.24_2013 for 2013-2014 televisions (xxx8-xxx9 (only non-Android)). New Android sets (2014+) do not come with Jointspace and are not supported
+**Version 0.5.0:**
+- Rewrite according to updated developers documentation at Athom
+- Added settings for IP-adress and Device Nr so it can be changed afterwards
+- Added Action Card for sending input keys
+- Bugfix: fixed the pairing problem and enter the IP-adress and Device Nr
+
+**Version 0.1.0:**
+- Initial version

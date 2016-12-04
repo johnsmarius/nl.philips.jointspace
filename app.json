@@ -1,61 +1,95 @@
 {
-	"id": "nl.philips.jointspace",
-	"version": "0.1.0",
-	"compatibility": "0.x || 1.x",
-	"name": {
-		"en": "Philips TV",
-		"nl": "Philips TV"
-	},
-	"description": {
-		"en": "Let Homey control your Philips TV with flow actions",
-		"nl": "Laat Homey jou Philips TV bedienen met flow acties"
-	},
-	"author": {
-		"name": "John Smarius",
-		"e-mail": "john.smarius@gmail.com"
-	},
-	"category": "video",
-	"dependencies": {
-		"net": "*",
-		"request": "*",
-      	"express":"^4.13.3",
-     	"ws":"^1.0.1"		
-	},
-	"permissions": [],
-	"images": {
-		"large": "./assets/images/large.jpg",
-		"small": "./assets/images/small.jpg"
-	},
-	"drivers": [
-		{
-			"id": "jointspace",
-			"name": {
-				"en": "Philips TV"
-			},
-			"images": {
-				"large": "./drivers/jointspace/assets/images/large.png",
-				"small": "./drivers/jointspace/assets/images/small.png"
-			},
-			"class": "tv",
-			"capabilities": [ "onoff", "channel", "volume", "source", "mute" ],
-			"pair": [{
-             	 "id": "start"
-           		},
-				{
-					"id": "list_devices",
-					"template": "list_devices",
-					"navigation": {
-						"next": "add_tv"
-					}
-				},
-				{
-					"id": "add_tv",
-					"template": "add_devices"
-				}
-			]		
-		}
-	],
-	"flow": {
+    "id": "nl.philips.jointspace",
+    "name": {
+        "en": "Philips TV"
+    },
+    "version": "0.5.0",
+    "compatibility": "0.x || 1.x",
+    "author": {
+        "name": "John Smarius",
+        "email": "john.smarius@gmail.com"
+    },
+    "images": {
+      "large": "./assets/images/large.jpg",
+      "small": "./assets/images/small.jpg"
+    },
+    "category": "appliances",
+    "description": {
+      "en": "Philips TV - Jointspace control app for Homey",
+      "nl": "Dit is een Philips TV - Jointspace aansturing app voor Homey"
+    },
+    "dependencies": {
+    		"net": "*"
+    },
+    "drivers": [
+      {
+          "id": "jointspace",
+          "name": {
+              "en": "Philips TV",
+              "nl": "Philips TV"
+          },
+          "images": {
+              "large": "drivers/jointspace/assets/images/large.png",
+              "small": "drivers/jointspace/assets/images/small.png"
+          },
+          "class": "other",
+          "capabilities": [ "onoff" ],
+          "mobile": {
+	           "components": [
+	              {
+		                "id": "icon",
+		                "capabilities": ["onoff"]
+		            }
+		         ]
+          },
+          "pair": [
+            {
+              "id": "start"
+            },
+            {
+              "id": "list_tvs",
+              "template": "list_devices",
+              "navigation": {
+                  "next": "add_tvs"
+              }
+            },
+            {
+              "id": "add_tvs",
+              "template": "add_devices"
+            }
+          ],
+          "settings": [
+            {
+              "type": "group",
+                      "label": {
+                          "en": "General settings",
+                          "nl": "Algemene instellingen"
+                      },
+                      "children": [
+                          {
+                              "id": "settingIPAddress",
+                              "type": "text",
+                              "label": {
+                                  "en": "IP address",
+                                  "nl": "IP adres"
+                              },
+                              "value": "0.0.0.0"
+                          },
+						  {
+                              "id": "settingDeviceNr",
+                              "type": "text",
+                              "label": {
+                                  "en": "Device Nr",
+                                  "nl": "Device Nr"
+                              },
+                              "value": "1"
+                          }
+                      ]
+            }
+          ]
+      }
+    ],
+    "flow": {
 		"actions": [
 			{
 				"id": "set_channel",
@@ -78,6 +112,31 @@
 						"placeholder": {
 							"en": "Select TV Channel",
 							"nl": "Selecteer TV kanaal"
+						}
+					}
+				]
+			},
+						{
+				"id": "input_key",
+				"title": {
+					"en": "Input Key to TV",
+					"nl": "Zend knop naar de TV"
+				},
+				"args": [
+					{
+						"name": "tv",
+						"type": "device",
+						"placeholder": {
+							"en": "Select Philips TV...",
+							"nl": "Selecteer Philips TV..."
+						}
+					},
+					{
+						"name": "key",
+						"type": "autocomplete",
+						"placeholder": {
+							"en": "Select Remote Key",
+							"nl": "Selecteer Remote Knop"
 						}
 					}
 				]
